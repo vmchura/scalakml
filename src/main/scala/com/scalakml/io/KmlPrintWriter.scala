@@ -76,13 +76,13 @@ class KmlPrintWriter(writer: Option[Writer] = Some(new PrintWriter(System.out)),
    * @param value the Kml element
    * @param pretty the pretty printer to use
    */
-  def write(value: Kml, pretty: PrettyPrinter) = write[Option[Kml]](Option(value), pretty)
+  def write(value: Kml, pretty: PrettyPrinter): Unit = write[Option[Kml]](Option(value), pretty)
 
   /**
    * convenience method
    * @param value the Kml element
    */
-  def write(value: Kml) = write[Option[Kml]](Option(value))
+  def write(value: Kml): Unit = write[Option[Kml]](Option(value))
 
   /**
    * writes the Kml element to xml
@@ -90,7 +90,7 @@ class KmlPrintWriter(writer: Option[Writer] = Some(new PrintWriter(System.out)),
    * @param value the Kml element option
    * @param pretty the pretty printer to use, default null
    */
-  def write[A: KmlToXml](value: A, pretty: PrettyPrinter = null) = {
+  def write[A: KmlToXml](value: A, pretty: PrettyPrinter = null): Unit = {
     if (writer.isDefined) {
       xmlExtractor match {
         case Some(extractor) =>
@@ -109,6 +109,6 @@ class KmlPrintWriter(writer: Option[Writer] = Some(new PrintWriter(System.out)),
   /**
    * close the writer
    */
-  def close() = if (writer.isDefined) writer.get.close()
+  def close(): Unit = if (writer.isDefined) writer.get.close()
 
 }

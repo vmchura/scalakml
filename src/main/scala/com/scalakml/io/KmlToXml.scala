@@ -100,7 +100,7 @@ object KmlToXml extends XmlExtractor {
     }
   }
 
-  def makeXmlNode[_](name: String, valueOption: Option[_]): NodeSeq = {
+  def makeXmlNode[A](name: String, valueOption: Option[A]): NodeSeq = {
     valueOption match {
       case Some(value) => value match {
 
@@ -1094,7 +1094,7 @@ object KmlToXml extends XmlExtractor {
         list ++= getXmlSeqFrom(Option(featurePart.get.styleSelector))
         list += getXmlFrom(featurePart.get.abstractView)
 
-        list filter (x => (x != null) && (x != None)) toSeq
+        list filter (x => Option(x).isDefined) toSeq
       }
     }
   }

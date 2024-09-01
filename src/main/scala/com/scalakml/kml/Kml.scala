@@ -2287,7 +2287,7 @@ case class Location(longitude: Option[Double] = None,
 
   def this(longitude: Double, latitude: Double) = this(Option(longitude), Option(latitude))
 
-  def llaToString() = this.longitude.getOrElse("") + "," + this.latitude.getOrElse("") + (if (this.altitude.isDefined) "," + this.altitude.get else "")
+  def llaToString(): String = this.longitude.map(_.toString).getOrElse("") + "," + this.latitude.map(_.toString).getOrElse("") + this.altitude.map(altitude => s",$altitude").getOrElse("")
 
 }
 
